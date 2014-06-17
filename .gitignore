@@ -6,3 +6,6 @@ buildnumber.txt
 
 # Lock files when the Content Server is running
 lockwait.dat
+
+# Ant Build Script
+dev_build.xml
