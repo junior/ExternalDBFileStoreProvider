@@ -1,0 +1,86 @@
+<?hda version="dev-trunk" jcharset="Cp1252" encoding="iso-8859-1"?>
+@Properties LocalData
+ComponentName=ExternalDBFileStoreProvider
+blDateFormat=M/d{/yy}{ h:mm[:ss]{ a}}!mAM,PM!tAmerica/Chicago
+componentTags=ateam, filestore
+featureExtensions=ExternalDBFileStoreProvider
+hasPreferenceData=0
+preventAdditionalComponentDowngrade=0
+requiredFeatures=FileStoreProvider
+version=2014_05_23(build 1)
+@end
+@ResultSet ClassAliases
+3
+classname
+location
+loadOrder
+@end
+@ResultSet ResourceDefinition
+4
+type
+filename
+tables
+loadOrder
+resource
+resources/externaldbfilestoreprovider_resource.htm
+null
+10
+resource
+lang/en/ww_strings.htm
+null
+10
+query
+resources/externaldbfilestoreprovider_query.htm
+ExternalDBFileStoreProvider_Queries
+10
+@end
+@ResultSet Filters
+4
+type
+location
+parameter
+loadOrder
+extraAfterServicesLoadInit
+oracle.ateam.content.filestore.externaldb.ExternalDBFileStoreProviderInstallFilter
+extraAfterServicesLoadInit
+50
+extraBeforeCacheLoadInit
+oracle.ateam.content.filestore.externaldb.ExternalDBFileStoreProviderInstallFilter
+extraBeforeCacheLoadInit
+50
+removeCustomDatedCaches
+oracle.ateam.content.filestore.externaldb.cache.ExternalDBFileCacheManager
+removeCustomDatedCaches
+10
+postIndexingStep
+oracle.ateam.content.filestore.externaldb.cache.ExternalDBFileCacheManager
+postIndexingStep
+10
+@end
+@ResultSet MergeRules
+4
+fromTable
+toTable
+column
+loadOrder
+ExternalDBFileStoreProvider_FSExternalStores
+FSExternalStores
+StorageType
+10
+ExternalDBFileStoreProvider_FSImplementorsDefaults
+FSImplementorsDefaults
+null
+10
+ExternalDBFileStoreProvider_DataStoreDesignTableList
+DataStoreDesignTableList
+null
+10
+ExternalDBFileStoreProvider_dsdTableInfo
+dsdTableInfo
+null
+10
+ExternalDBFileStoreProviderColumnTranslation
+ColumnTranslation
+column
+10
+@end

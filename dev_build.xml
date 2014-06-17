@@ -1,0 +1,69 @@
+<?xml version="1.0" ?>
+<project name="ExternalDBFileStoreProvider Standalone Build" default="wrapup">
+
+	<target name="setup">
+<!--		
+		<mkdir dir="classes/" />
+-->
+	</target>
+
+	<target name="compile" depends="setup">
+<!--
+		<javac debug="true" srcdir="java/contenttrackerreports/" destdir="classes/" classpath="C:/oracle/ucm/server/shared/classes/idcserver.jar" />
+-->
+		<echo>External DB FileStore Provider Compilation OK</echo>
+	</target>
+
+	<target name="classes_bundle" depends="compile">
+
+		<jar destfile="classes-ExternalDBFileStoreProvider.jar" 
+			filesonly="true"
+			basedir="C:/Dev/WCC/11gDev/11.1.1.x/sources/build"
+			includes="oracle/**">
+		    <include name="build"/>
+		    <manifest>
+		      <attribute name="Built-By" value="Adao.Junior@oracle.com"/>
+		      <!-- Information about the program itself -->
+		      <attribute name="Implementation-Vendor" value="Oracle A-Team."/>
+		      <attribute name="Implementation-Title" value="External DB FileStore Provider"/>
+		      <attribute name="Implementation-Version" value="1.0.3"/>
+		    </manifest>
+		</jar>
+
+		<echo>External DB FileStore Provider Jarred OK</echo>
+	</target>
+
+	<target name="component_bundle" depends="classes_bundle">
+		<zip destfile="ExternalDBFileStoreProvider.zip" filesonly="true">
+			<zipfileset dir="." includes="manifest.hda" />
+			<zipfileset dir="." prefix="component/ExternalDBFileStoreProvider/" includes="ExternalDBFileStoreProvider.hda" />
+			<zipfileset dir="." prefix="component/ExternalDBFileStoreProvider/" includes="readme.html" />
+			<zipfileset dir="." prefix="component/ExternalDBFileStoreProvider/" includes="resources/**" />
+			<zipfileset dir="." prefix="component/ExternalDBFileStoreProvider/" includes="lang/**" />
+			<zipfileset dir="." prefix="component/ExternalDBFileStoreProvider/" includes="classes-ExternalDBFileStoreProvider.jar" />
+		</zip>
+		<echo>External DB FileStore Provider Component Install Zipped OK</echo>
+	</target>
+
+	<!-- Changed to just rename and add the build number on the end-->
+	<target name="package-component-bundle" depends="component_bundle">
+		<loadfile property="cu-buildnumber" srcFile="buildnumber.txt"/>
+		<move
+			file="ExternalDBFileStoreProvider.zip" 
+			tofile="builds/ExternalDBFileStoreProvider_b${cu-buildnumber}.zip"
+			/>
+
+	</target>
+	
+	<target name="cleanup" depends="package-component-bundle">
+<!--
+		<delete dir="classes/" />
+-->
+		<echo>External DB FileStore Providerv Build Cleanup Complete</echo>
+	</target>
+
+	<target name="wrapup" depends="cleanup">
+		<echo>External DB FileStore Provider Build Complete</echo>
+	</target>
+
+</project>

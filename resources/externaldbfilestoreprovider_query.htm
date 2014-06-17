@@ -1,0 +1,112 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>
+ExternalDBFileStoreProvider query</title></head>
+<body>
+
+<@table ExternalDBFileStoreProvider_Queries@>
+<table border=1><caption><strong>Query Definition Table</strong></caption>
+<tr>
+	<td>name</td>
+	<td>queryStr</td>
+	<td>parameters</td>
+</tr>
+<!-- ExternalDB FileStorage queries 11g -->
+<tr>
+	<td>DexternalDbFileStorage</td>
+	<td>DELETE FROM ExternalDbFileStorage WHERE dID=? AND dRenditionId=?</td>
+	<td>dID int
+		dRenditionId varchar</td>
+</tr>
+<tr>
+	<td>(PREPARED)IexternalDbFileStorage</td>
+	<td>INSERT INTO ExternalDbFileStorage (dID, dRenditionId, xamXUId, dFileSize, dLastModified)
+		VALUES (?, ?, ?, ?, ?)</td>
+	<td>dID int
+		dRenditionId varchar
+		xamXUId varchar
+		dFileSize int
+		dLastModified datetime</td>
+</tr>
+<tr>
+	<td>IcopyExternalDbFileStorage</td>
+	<td>INSERT INTO ExternalDbFileStorage (dID, dRenditionId, dLastModified, xamXUId, dFileSize) 
+		SELECT ?, ?, ?, xamXUId, dFileSize FROM ExternalDbFileStorage 
+		WHERE dID=? AND dRenditionId=?</td>
+	<td>dID int
+		dRenditionId varchar
+		dLastModified datetime
+		sourceId int
+		sourceRen varchar</td>
+</tr>
+<tr>
+	<td>QexternalDbFileStorage</td>
+	<td>SELECT * FROM ExternalDbFileStorage WHERE dID=? AND dRenditionId=?</td>
+	<td>dID int
+		dRenditionId varchar</td>
+</tr>
+<tr>
+	<td>(PREPARED)UexternalDbFileStorage</td>
+	<td>UPDATE ExternalDbFileStorage SET dFileSize=?, dLastModified=?, xamXUId=?
+		WHERE dID=? AND dRenditionId=?</td>
+	<td>dFileSize int
+		dLastModified datetime
+		xamXUId varchar
+		dID int
+		dRenditionId varchar</td>
+</tr>
+
+<!-- ExternalDB FileCache queries 11g -->
+<tr>
+	<td>DexternalDbFileCache</td>
+	<td>DELETE FROM ExternalDbFileCache WHERE dID=? AND dRenditionId=?</td>
+	<td>dID int
+		dRenditionId varchar</td>
+</tr>
+<tr>
+	<td>IexternalDbFileCache</td>
+	<td>INSERT INTO ExternalDbFileCache (dID, dRenditionId, dFileSize, dFilesystemKey, dLastAccessed)
+		VALUES (?, ?, ?, ?, ?)</td>
+	<td>dID int
+		dRenditionId varchar
+		dFileSize int
+		dFilesystemKey varchar
+		dLastAccessed datetime</td>
+</tr>
+<tr>
+	<td>QagedExternalDbFileCache</td>
+	<td>SELECT * FROM ExternalDbFileCache WHERE dLastAccessed<?</td>
+	<td>dLastAccessed datetime</td>
+</tr>
+<tr>
+	<td>QexternalDbFileCache</td>
+	<td>SELECT * FROM ExternalDbFileCache WHERE dID=? AND dRenditionId=?</td>
+	<td>dID int
+		dRenditionId varchar</td>
+</tr>
+<tr>
+    <td>QexternalDbFileCacheAll</td>
+    <td>SELECT * FROM ExternalDbFileCache</td>
+    <td></td>
+</tr>
+<tr>
+	<td>QsumExternalDbFileCache</td>
+	<td>SELECT SUM(dFileSize) AS FS_SIZESUM FROM ExternalDbFileCache WHERE dLastAccessed<?</td>
+	<td>dLastAccessed datetime</td>
+</tr>
+<tr>
+	<td>UexternalDbFileCache</td>
+	<td>UPDATE ExternalDbFileCache SET dLastAccessed=? 
+		WHERE dID=? AND dRenditionId=? AND dFileSize=?</td>
+	<td>dLastAccessed datetime
+		dID int
+		dRenditionId varchar
+		dFileSize int</td>
+</tr>
+
+
+</table>
+<@end@>
+</body>
+</html>

@@ -1,0 +1,8 @@
+# Not releasing the source yet
+java/
+
+# Automated Build Number
+buildnumber.txt
+
+# Lock files when the Content Server is running
+lockwait.dat
