@@ -7,7 +7,7 @@ featureExtensions=ExternalDBFileStoreProvider
 hasPreferenceData=0
 preventAdditionalComponentDowngrade=0
 requiredFeatures=FileStoreProvider
-version=2014_05_23(build 1)
+version=2014_05_23(build 803)
 @end
 @ResultSet ClassAliases
 3
