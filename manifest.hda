@@ -1,5 +1,6 @@
 <?hda version="dev-trunk" jcharset="Cp1252" encoding="iso-8859-1"?>
 @Properties LocalData
+ComponentName=ExternalDBFileStoreProvider
 blDateFormat=M/d{/yy}{ h:mm[:ss]{ a}}!mAM,PM!tAmerica/Chicago
 @end
 @ResultSet Manifest

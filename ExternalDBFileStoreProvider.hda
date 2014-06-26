@@ -2,6 +2,7 @@
 @Properties LocalData
 ComponentName=ExternalDBFileStoreProvider
 blDateFormat=M/d{/yy}{ h:mm[:ss]{ a}}!mAM,PM!tAmerica/Chicago
+classpath=$COMPONENT_DIR/classes-ExternalDBFileStoreProvider.jar
 componentTags=ateam, filestore
 featureExtensions=ExternalDBFileStoreProvider
 hasPreferenceData=0
@@ -41,19 +42,19 @@ location
 parameter
 loadOrder
 extraAfterServicesLoadInit
-oracle.ateam.content.filestore.externaldb.ExternalDBFileStoreProviderInstallFilter
+oracle.ateam.content.filestore.externaldb.ExternalDbFileStoreProviderInstallFilter
 extraAfterServicesLoadInit
 50
 extraBeforeCacheLoadInit
-oracle.ateam.content.filestore.externaldb.ExternalDBFileStoreProviderInstallFilter
+oracle.ateam.content.filestore.externaldb.ExternalDbFileStoreProviderInstallFilter
 extraBeforeCacheLoadInit
 50
 removeCustomDatedCaches
-oracle.ateam.content.filestore.externaldb.cache.ExternalDBFileCacheManager
+oracle.ateam.content.filestore.externaldb.cache.ExternalDbFileCacheManager
 removeCustomDatedCaches
 10
 postIndexingStep
-oracle.ateam.content.filestore.externaldb.cache.ExternalDBFileCacheManager
+oracle.ateam.content.filestore.externaldb.cache.ExternalDbFileCacheManager
 postIndexingStep
 10
 @end
