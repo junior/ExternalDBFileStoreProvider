@@ -1,18 +1,31 @@
 # Not releasing the source yet
 java/
 
-# 3rd Party SDK
+# 3rd Party SDK (To do not Distribute)
 lib/
+
+# Builds folder, moved to Github releases
+builds/
 
 # compiled Classes
 classes-*.jar
 
 # Automated Build Number
-buildnumber.txt
+build.number
+
+# Automated Relese Number
+release.number
+
+# Current Component Status
+component.status
 
 # Lock files when the Content Server is running
 lockwait.dat
 
+# Generated Readme files (txt or html)
+readme.txt
+readme.html
+
 # Ant Build Script
-dev_build.xml
+# dev_build.xml
 

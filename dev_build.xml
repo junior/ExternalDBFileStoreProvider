@@ -1,56 +1,90 @@
 <?xml version="1.0" ?>
-<project name="ExternalDBFileStoreProvider Standalone Build" default="wrapup">
+<project name="External DB FileStore Provider Component" default="wrapup">
 
 	<target name="setup">
+		<echo message="${ant.project.name}: ${ant.file}"/>
 <!--		
 		<mkdir dir="classes/" />
 -->
+		<loadfile property="build.number" srcFile="build.number"/>
+		<loadfile property="release.number" srcFile="release.number"/>
+		<loadfile property="component.status" srcFile="component.status"/>
+		<property name="component.name" value="ExternalDBFileStoreProvider"/>
+		<property name="component.desc" value="${ant.project.name}"/>
+		<property name="component.status" value="${component.status}"/>
+		<property name="component.version" value="${release.number}.${build.number}${component.status}"/>
+		<property name="component.release.name" value="${component.name}_v${component.version}.zip"/>
+		<property name="build.dir" value="/Dev/WCC/11gDev/11.1.1.x/sources/build"/>
 	</target>
 
-	<target name="compile" depends="setup">
+	<target name="readme" depends="setup">
+<!--	README Markdown to HTML5 conversion
+		<exec executable="pandoc" os="Mac OS X">
+			<arg value="README.md"/>
+			<arg value="-f"/>
+			<arg value="markdown_github"/>
+			<arg value="-t"/>
+			<arg value="html5"/>
+			<arg value="-s"/>
+			<arg value="-o"/>
+			<arg value="readme.html"/>
+		</exec>
+-->		
+		<copy
+			file="README.md" 
+			tofile="readme.txt"
+			overwrite="true"
+			/>
+			
+		<echo>${component.desc} README creation OK</echo>
+	</target>	
+
+	<target name="compile" depends="readme">
 <!--
-		<javac debug="true" srcdir="java/contenttrackerreports/" destdir="classes/" classpath="C:/oracle/ucm/server/shared/classes/idcserver.jar" />
+		<javac debug="true" srcdir="java/${component.name}/" destdir="classes/"  />
 -->
-		<echo>External DB FileStore Provider Compilation OK</echo>
+		<echo>${component.desc} Compilation OK</echo>
 	</target>
-
+	
 	<target name="classes_bundle" depends="compile">
-
-		<jar destfile="classes-ExternalDBFileStoreProvider.jar" 
+		
+		<jar destfile="classes-${component.name}.jar" 
 			filesonly="true"
-			basedir="C:/Dev/WCC/11gDev/11.1.1.x/sources/build"
+			basedir="${build.dir}"
 			includes="oracle/**">
 		    <include name="build"/>
 		    <manifest>
-		      <attribute name="Built-By" value="Adao.Junior@oracle.com"/>
+		      <attribute name="Built-By" value="Adao.Junior"/>
 		      <!-- Information about the program itself -->
-		      <attribute name="Implementation-Vendor" value="Oracle A-Team."/>
-		      <attribute name="Implementation-Title" value="External DB FileStore Provider"/>
-		      <attribute name="Implementation-Version" value="1.0.3"/>
+		      <attribute name="Implementation-Vendor" value="Oracle A-Team"/>
+			  <attribute name="Implementation-Vendor-Id" value="oracle.ateam"/>
+		      <attribute name="Implementation-Title" value="${component.desc}"/>
+		      <attribute name="Implementation-Version" value="${component.version}"/>
+			  <attribute name="Implementation-URL" value="https://github.com/junior/${component.name}/releases/download/v${component.version}/${component.release.name}"/>
 		    </manifest>
 		</jar>
 
-		<echo>External DB FileStore Provider Jarred OK</echo>
+		<echo>${component.desc} Jarred OK</echo>
 	</target>
 
 	<target name="component_bundle" depends="classes_bundle">
-		<zip destfile="ExternalDBFileStoreProvider.zip" filesonly="true">
+		<zip destfile="${component.name}.zip" filesonly="true">
 			<zipfileset dir="." includes="manifest.hda" />
-			<zipfileset dir="." prefix="component/ExternalDBFileStoreProvider/" includes="ExternalDBFileStoreProvider.hda" />
-			<zipfileset dir="." prefix="component/ExternalDBFileStoreProvider/" includes="readme.html" />
-			<zipfileset dir="." prefix="component/ExternalDBFileStoreProvider/" includes="resources/**" />
-			<zipfileset dir="." prefix="component/ExternalDBFileStoreProvider/" includes="lang/**" />
-			<zipfileset dir="." prefix="component/ExternalDBFileStoreProvider/" includes="classes-ExternalDBFileStoreProvider.jar" />
+			<zipfileset dir="." prefix="component/${component.name}/" includes="${component.name}.hda" />
+			<zipfileset dir="." prefix="component/${component.name}/" includes="readme.html" />
+			<zipfileset dir="." prefix="component/${component.name}/" includes="resources/**" />
+			<zipfileset dir="." prefix="component/${component.name}/" includes="lang/**" />
+			<zipfileset dir="." prefix="component/${component.name}/" includes="classes-${component.name}.jar" />
 		</zip>
-		<echo>External DB FileStore Provider Component Install Zipped OK</echo>
+		<echo>${component.desc} Component Install Zipped OK</echo>
 	</target>
 
 	<!-- Changed to just rename and add the build number on the end-->
 	<target name="package-component-bundle" depends="component_bundle">
-		<loadfile property="cu-buildnumber" srcFile="buildnumber.txt"/>
+		
 		<move
-			file="ExternalDBFileStoreProvider.zip" 
-			tofile="builds/ExternalDBFileStoreProvider_b${cu-buildnumber}.zip"
+			file="${component.name}.zip" 
+			tofile="builds/${component.release.name}"
 			/>
 
 	</target>
@@ -59,11 +93,15 @@
 <!--
 		<delete dir="classes/" />
 -->
-		<echo>External DB FileStore Providerv Build Cleanup Complete</echo>
+		<echo>${component.desc} Build Cleanup Complete</echo>
 	</target>
 
 	<target name="wrapup" depends="cleanup">
-		<echo>External DB FileStore Provider Build Complete</echo>
+		<echo>${component.desc} Build Complete</echo>
 	</target>
 
 </project>
+<!--		
+		Component Creator using ANT version 101
+		By Adao.Junior
+-->

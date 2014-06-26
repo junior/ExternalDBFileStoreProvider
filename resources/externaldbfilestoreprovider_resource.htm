@@ -45,10 +45,10 @@ ExternalDBFileStoreProvider htmlIncludeOrString</title></head>
     <td>dsdIsCSTable</td>
 </tr>
 <tr>
-    <td>ExternalDbFileStorage</td><td>ExternalDBFileStoreProvider</td><td>8.0</td><td></td><td>0</td>
+    <td>ExternalDbFileStorage</td><td>ExternalDBFileStoreProvider</td><td>1.0</td><td></td><td>0</td>
 </tr>
 <tr>
-    <td>ExternalDbFileCache</td><td>ExternalDBFileStoreProvider</td><td>8.0</td><td></td><td>0</td>
+    <td>ExternalDbFileCache</td><td>ExternalDBFileStoreProvider</td><td>1.0</td><td></td><td>0</td>
 </tr>
 </table>
 <@end@>
@@ -69,22 +69,6 @@ ExternalDBFileStoreProvider htmlIncludeOrString</title></head>
     <td>text</td>
     <td>30</td>
     <td>1</td>
-    <td>0</td>
-    <td></td>
-</tr>
-<tr>
-    <td>xamXUId</td>
-    <td>text</td>
-    <td>90</td>
-    <td>0</td>
-    <td>0</td>
-    <td></td>
-</tr>
-<tr>
-    <td>xamXSystem</td>
-    <td>text</td>
-    <td>50</td>
-    <td>0</td>
     <td>0</td>
     <td></td>
 </tr>
@@ -213,21 +197,13 @@ ExternalDBFileStoreProvider htmlIncludeOrString</title></head>
 	<td>DISDELETED</td>
 	<td>dIsDeleted</td>
 </tr>
-<tr>
-	<td>XAMXUID</td>
-	<td>xamXUId</td>
-</tr>
-<tr>
-	<td>XAMXSYSTEM</td>
-	<td>xamXSystem</td>
-</tr>
 </table>
 <@end@>
 
 <@wwFsRule_ExternalDB=ExternalDB@>
 
 <@dynamichtml fs_externaldb_options@>
-	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [Centera]
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [External DB]
 	<label for="RenditionsOnFileSystem"><span class="tableEntry"><$lc("wwFsJdbcRenditions")$></span></label>
 	<input type="text" name="RenditionsOnFileSystem" id="RenditionsOnFileSystem" value="<$#local.RenditionsOnFileSystem$>" size="30"/>
 	<label class="hidden" for="renditions"><$lc("wwOperatorForField", "renditions")$></label>
@@ -236,9 +212,9 @@ ExternalDBFileStoreProvider htmlIncludeOrString</title></head>
 		<option value="web"><$lc("wwFsWebRenditions")$></option>
 		<option value="vault"><$lc("wwFsVaultRenditions")$></option>
 	</select>
+	<br /><span class="xxsmall">Bellow you can select the active External DB DataSource</span><br />
+	<label for="ExternalDataSource"><span class="tableEntry">External DB DataSource</span></label>
+	<input type="text" size="25" name="ExternalDataSource" id="ExternalDataSource" value="ExternalDBStorage" disabled />	
 <@end@>
-<@apCenteraFsXUId=Centera XUID@>
-<@apCenteraFsUsingCentera=Using Centera?@>
-
 </body>
 </html>
