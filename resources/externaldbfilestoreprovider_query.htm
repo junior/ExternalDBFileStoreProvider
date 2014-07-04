@@ -12,7 +12,7 @@ ExternalDBFileStoreProvider query</title></head>
 	<td>queryStr</td>
 	<td>parameters</td>
 </tr>
-<!-- ExternalDB FileStorage queries 11g -->
+<!-- ExternalDB FileStorage queries -->
 <tr>
 	<td>DexternalDbFileStorage</td>
 	<td>DELETE FROM ExternalDbFileStorage WHERE dID=? AND dRenditionId=?</td>
@@ -21,18 +21,18 @@ ExternalDBFileStoreProvider query</title></head>
 </tr>
 <tr>
 	<td>(PREPARED)IexternalDbFileStorage</td>
-	<td>INSERT INTO ExternalDbFileStorage (dID, dRenditionId, xamXUId, dFileSize, dLastModified)
+	<td>INSERT INTO ExternalDbFileStorage (dID, dRenditionId, dFileSize, dLastModified, bFileData)
 		VALUES (?, ?, ?, ?, ?)</td>
 	<td>dID int
 		dRenditionId varchar
-		xamXUId varchar
 		dFileSize int
-		dLastModified datetime</td>
+		dLastModified datetime
+		bFileData blob</td>
 </tr>
 <tr>
 	<td>IcopyExternalDbFileStorage</td>
-	<td>INSERT INTO ExternalDbFileStorage (dID, dRenditionId, dLastModified, xamXUId, dFileSize) 
-		SELECT ?, ?, ?, xamXUId, dFileSize FROM ExternalDbFileStorage 
+	<td>INSERT INTO ExternalDbFileStorage (dID, dRenditionId, dLastModified, dFileSize, bFileData) 
+		SELECT ?, ?, ?, dFileSize, bFileData FROM ExternalDbFileStorage 
 		WHERE dID=? AND dRenditionId=?</td>
 	<td>dID int
 		dRenditionId varchar
@@ -48,16 +48,16 @@ ExternalDBFileStoreProvider query</title></head>
 </tr>
 <tr>
 	<td>(PREPARED)UexternalDbFileStorage</td>
-	<td>UPDATE ExternalDbFileStorage SET dFileSize=?, dLastModified=?, xamXUId=?
+	<td>UPDATE ExternalDbFileStorage SET dFileSize=?, dLastModified=?, bFileData=?
 		WHERE dID=? AND dRenditionId=?</td>
 	<td>dFileSize int
 		dLastModified datetime
-		xamXUId varchar
+		bFileData blob
 		dID int
 		dRenditionId varchar</td>
 </tr>
 
-<!-- ExternalDB FileCache queries 11g -->
+<!-- ExternalDB FileCache queries -->
 <tr>
 	<td>DexternalDbFileCache</td>
 	<td>DELETE FROM ExternalDbFileCache WHERE dID=? AND dRenditionId=?</td>

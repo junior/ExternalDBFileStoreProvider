@@ -51,7 +51,7 @@
 		<jar destfile="classes-${component.name}.jar" 
 			filesonly="true"
 			basedir="${build.dir}"
-			includes="oracle/**">
+			includes="oracle/ateam/content/filestore/externaldb/**">
 		    <include name="build"/>
 		    <manifest>
 		      <attribute name="Built-By" value="Adao.Junior"/>
