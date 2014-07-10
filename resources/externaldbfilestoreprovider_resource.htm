@@ -11,9 +11,11 @@ ExternalDBFileStoreProvider htmlIncludeOrString</title></head>
 <tr>
 <td>StorageType</td><td>StorageDesc</td><td>Implementor</td><td>DynInclude</td>
 </tr>
-
 <tr>
 <td>ExternalDBStorage</td><td>wwFsExternalDBStorageDesc</td><td>ExternalDatabaseStorage</td><td>fs_externaldb_options</td>
+</tr>
+<tr>
+<td>TestStorage</td><td>wwFsExternalDBStorageDesc</td><td>TestDbStorage</td><td>fs_testdb_options</td>
 </tr>
 </table>
 
@@ -26,10 +28,16 @@ ExternalDBFileStoreProvider htmlIncludeOrString</title></head>
 <!-- Merge to FSImplementorsDefaults -->
 <table>
 <tr>
-	<td>name</td><td>location</td>
+	<td>name</td>
+	<td>location</td>
 </tr>
 <tr>
-	<td>ExternalDatabaseStorage</td><td>oracle.ateam.content.filestore.externaldb.ExternalDbStorage</td>
+	<td>ExternalDatabaseStorage</td>
+	<td>oracle.ateam.content.filestore.externaldb.ExternalDbStorage</td>
+</tr>
+<tr>
+	<td>TestDbStorage</td>
+	<td>oracle.ateam.content.filestore.externaldb.TestDbStorage</td>
 </tr>
 </table>
 <@end@>
@@ -212,6 +220,21 @@ ExternalDBFileStoreProvider htmlIncludeOrString</title></head>
 	</select>
 	<br /><span class="xxsmall">Bellow you can select the active External DB DataSource</span><br />
 	<label for="ExternalDataSource"><span class="tableEntry">External DB DataSource</span></label>
+	<input type="text" size="25" name="ExternalDataSource" id="ExternalDataSource" value="ExternalDBStorage" disabled />	
+<@end@>
+
+<@dynamichtml fs_testdb_options@>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [Test DB]
+	<label for="RenditionsOnFileSystem"><span class="tableEntry"><$lc("wwFsJdbcRenditions")$></span></label>
+	<input type="text" name="RenditionsOnFileSystem" id="RenditionsOnFileSystem" value="<$#local.RenditionsOnFileSystem$>" size="30"/>
+	<label class="hidden" for="renditions"><$lc("wwOperatorForField", "renditions")$></label>
+	<select name="renditions" id="renditions" onchange="selectMethod(this, 'RenditionsOnFileSystem')">
+		<option value="">&nbsp;</option>
+		<option value="web"><$lc("wwFsWebRenditions")$></option>
+		<option value="vault"><$lc("wwFsVaultRenditions")$></option>
+	</select>
+	<br /><span class="xxsmall">Bellow you can select the active Test DB DataSource</span><br />
+	<label for="ExternalDataSource"><span class="tableEntry">Test DB DataSource</span></label>
 	<input type="text" size="25" name="ExternalDataSource" id="ExternalDataSource" value="ExternalDBStorage" disabled />	
 <@end@>
 </body>
